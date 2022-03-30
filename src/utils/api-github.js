@@ -3,3 +3,9 @@
 const axios = require('axios');
 
 /// // END OF IMPORTS /////
+
+const gitApi = {
+
+};
+
+module.exports = gitApi;

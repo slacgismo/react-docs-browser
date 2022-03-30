@@ -1,18 +1,37 @@
 require('dotenv').config();
 const axios = require('axios');
 const express = require('express');
-const gitApi = require('../src/util/api-github');
+const path = require('path');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const gitApi = require('../src/utils/api-github');
+
+// ----------------------------------------- END OF IMPORTS-----------------------------------------
 
 const app = express();
 const port = 3005;
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: 'http://localhost:3005', // <-- location of the react app were connecting to
+    credentials: true,
+  }),
+);
+app.use(
+  session({
+    secret: 'secretcode',
+    resave: true,
+    saveUninitialized: true,
+  }),
+);
+app.use(cookieParser('secretcode'));
+app.use(express.static('dist'));
 app.use(express.json());
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3005'); // update to match the domain you will make the request from
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+app.use(express.urlencoded());
 
 let gtoken;
 
@@ -49,6 +68,15 @@ app.get('/gtoken', (req, res) => {
   res.send(
     `${gtoken}`,
   );
+});
+
+// Should always be last route
+app.get('*', (req, res) => {
+  if (req.path.endsWith('bundle.js')) {
+    res.sendFile(path.resolve(__dirname, '../dist/main.bundle.js'));
+  } else {
+    res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+  }
 });
 
 app.listen(port, () => {
