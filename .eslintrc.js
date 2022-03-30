@@ -26,5 +26,22 @@ module.exports = {
       'react/prop-types': 0,
       'func-names': 0,
       'react/function-component-definition': [2, { namedComponents: 'function-declaration' }],
+      'react/jsx-filename-extension': [
+        1,
+        {
+          'extensions': [
+            '.js',
+            '.jsx'
+          ]
+        }
+      ],
+      'camelcase': 1,
+      'max-len': 1,
+      'jsx-a11y/label-has-associated-control': [
+        2,
+        {
+          'assert': 'either'
+        }
+      ]
     },
   };

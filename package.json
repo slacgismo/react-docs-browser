@@ -46,7 +46,7 @@
     "@testing-library/user-event": "^13.5.0",
     "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
-    "eslint": "^8.4.1",
+    "eslint": "^8.12.0",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-loader": "^4.0.2",
@@ -73,54 +73,20 @@
     "webpack-dev-server": "^4.6.0"
   },
   "scripts": {
-    "test": "test"
-  },
-  "eslintConfig": {
-    "extends": [
-      "airbnb",
-      "plugin:jest/recommended"
-    ],
-    "globals": {
-      "window": true
-    },
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "paths": [
-            "src"
-          ]
-        }
-      }
-    },
-    "env": {
-      "es6": true
-    },
-    "rules": {
-      "react/jsx-filename-extension": [
-        1,
-        {
-          "extensions": [
-            ".js",
-            ".jsx"
-          ]
-        }
-      ],
-      "camelcase": 1,
-      "max-len": 1,
-      "jsx-a11y/label-has-associated-control": [
-        2,
-        {
-          "assert": "either"
-        }
-      ]
-    }
+    "start": "node server/index.js",
+    "build": "webpack",
+    "test": "jest",
+    "serve-react-dev": "webpack-dev-server --config webpack.config.js",
+    "react-dev": "webpack -w",
+    "server-dev": "nodemon server/index.js",
+    "debug": "nodemon --inspect server/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/slacgismo/react-docs-browser.git"
   },
   "author": "SLAC GISMo",
-  "license": "ISC",
+  "license": "None",
   "bugs": {
     "url": "https://github.com/slacgismo/react-docs-browser/issues"
   },
