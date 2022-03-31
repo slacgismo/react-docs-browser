@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Main } from '../styling/styledElem';
+import {
+  Main, DivRow, DivCol, DivColDocs,
+} from '../styling/styledElem';
 
 // ------------END OF DEPENDENCIES------------
 
@@ -13,7 +15,13 @@ function App() {
   return (
     <Main data-testid="app">
       <Nav />
-      <Finder />
+      <DivRow>
+        <DivCol>
+          <Finder />
+          <div>TOC PLACEHOLDER</div>
+        </DivCol>
+        <DivColDocs>DOC PLACEHOLDER</DivColDocs>
+      </DivRow>
     </Main>
   );
 }
