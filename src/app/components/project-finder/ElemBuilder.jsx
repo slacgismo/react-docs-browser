@@ -1,12 +1,12 @@
 import React from 'react';
 
-function ElemBuilder({ elem }) {
+function ElemBuilder({ elem, value, handleChange }) {
   let text;
   switch (elem.label) {
     case 'Host':
       text = 'This should generally be set to github.com but can be set to any host that support the GitHub API.';
       break;
-    case 'User/Organization':
+    case 'Organization':
       text = 'This must be set to the default project owner (user or organization, e.g., slacgismo).';
       break;
     case 'Project':
@@ -23,7 +23,13 @@ function ElemBuilder({ elem }) {
       <div>
         <label>
           {elem.label}
-          <input type="text" id={elem.label} placeholder="Enter Host" />
+          <input
+            type="text"
+            id={elem.label}
+            placeholder="Enter Host"
+            value={value.value}
+            onChange={(e) => handleChange(e)}
+          />
         </label>
         <br />
         <small>{text}</small>
